@@ -31,6 +31,9 @@ gem "jbuilder"
 gem "redis", "~> 4.0"
 
 gem 'devise'
+gem 'activeadmin'
+gem 'sassc-rails', '>= 2.0'
+gem 'faker'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
