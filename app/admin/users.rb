@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 
-    permit_params :email, :name, :address, :company, :phone_number
+    permit_params :email, :name, :address, :company, :phone_number, :role, :account_active
 
     menu label: "Users"
 
@@ -10,10 +10,14 @@ ActiveAdmin.register User do
         column :address
         column :company
         column :phone_number
+        column :role
+        column :account_active
     end
 
    filter :name
    filter :company
+   filter :role
+   filter :account_active
 
    controller { actions :all, except: [:destroy] }
 

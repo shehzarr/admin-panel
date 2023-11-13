@@ -3,9 +3,11 @@
 require 'faker'
 puts "Seeding data to the database ...."
 
-AdminUser.create!(email: 'admin@gmail.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-
 User.destroy_all
+Subscription.destroy_all
+AdminUser.destroy_all
+
+AdminUser.create!(email: 'admin@gmail.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 30.times do
     @user = User.create!(
@@ -20,3 +22,19 @@ User.destroy_all
     end
 
 puts "Seeding operation complete !"
+
+20.times do |i|
+    name = Faker::Subscription.plan
+    price = rand(10..100)
+    status = Faker::Subscription.status
+    description = Faker::Company.bs
+    user_id = (i % 29) + 1  # Ensures user_id is unique and within the range
+
+    Subscription.create(
+      name: name,
+      price: price,
+      status: status,
+      description: description,
+      user_id: user_id
+    )
+  end
