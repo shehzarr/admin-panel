@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+
+  button {
+    width: 100px;
+    height: 50px;
+    border-radius: 9px;
+    border: 0.75px solid #303030ff;
+    background-color: hsl(240deg 17% 34%);
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15px;
+    font-variant: small-caps;
+  }
+
+  ol {
+    display: flex;
+    flex-direction: row;
+  }
+
+  li {
+    margin: 15px;
+    padding: 25px;
+  }
+
+  article {
+    background-color: lavender;
+    border-radius: 10px;
+    padding: 15px 30px;
+  }
+
+  article:hover {
+    transition: ease-in-out .1s;
+    transform: scale(1.0625);
+  }

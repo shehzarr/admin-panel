@@ -1,13 +1,46 @@
-<%= form_tag payments_path do %>
-  <label class="amount">
-      <span>Amount: $5.00</span>
-  </label>
-
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="A month's subscription"
-    data-amount="500"
-    data-locale="auto">
-  </script>
+<%= form_tag({ controller: 'payments', action: 'create' }) do %>
+  <section>
+    <h1>Subscriptions</h1>
+    <ol>
+      <li>
+        <article>
+          <h2>Basic</h2>
+          <p>This is a Basic Membership for 5$</p>
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="A week's subscription"
+              data-amount="500"
+              data-locale="auto">
+            </script>
+        </article>
+      </li>
+      <li>
+        <article>
+          <h2>Plus</h2>
+          <p>This is a Plus Membership for 10$</p>
+          <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="A month's subscription"
+              data-amount="1000"
+              data-locale="auto">
+            </script>
+        </article>
+      </li>
+          <li>
+        <article>
+          <h2>Premium</h2>
+          <p>This is a Premium Membership for 15$</p>
+          <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="A year's subscription"
+              data-amount="1500"
+              data-locale="auto">
+            </script>
+        </article>
+      </li>
+    </ol>
+  </section>
 <% end %>
