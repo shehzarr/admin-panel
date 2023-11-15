@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :subscriptions, dependent: :destroy
+  has_many :payments, dependent: :destroy
   enum role: [:free, :premium, :admin]
 
   def self.ransackable_attributes(auth_object = nil)

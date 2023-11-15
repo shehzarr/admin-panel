@@ -1,7 +1,25 @@
-<% if user_signed_in? %>
- <div> Welcome <%= current_user.email %> </div>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= button_to "Sign in", new_user_session_path %>
-<% end %>
-<h1>Hello from Home!</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <% if user_signed_in? %>
+        <div class="card">
+          <div class="card-body text-center">
+            <h2>Welcome <%= current_user.email %></h2>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger mt-3' %>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body text-center">
+            <h1>Hello from Home!</h1>
+          </div>
+        </div>
+      <% else %>
+        <div class="card">
+          <div class="card-body text-center">
+            <%= button_to "Sign in", new_user_session_path, class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

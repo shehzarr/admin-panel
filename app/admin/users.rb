@@ -9,7 +9,9 @@ ActiveAdmin.register User do
       column :address
       column :company
       column :phone_number
-      column :role
+      column :role do |user|
+        user.subscriptions.present? ? 'Subscriber' : 'Member'
+      end
       column :account_active
 
       actions defaults: false do |user|
