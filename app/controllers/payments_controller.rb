@@ -1,5 +1,7 @@
 class PaymentsController < ApplicationController
-  def new;  end
+  def new
+    @user = current_user
+  end
 
   def create
     begin

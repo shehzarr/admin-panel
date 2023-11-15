@@ -10,7 +10,7 @@ ActiveAdmin.register User do
       column :company
       column :phone_number
       column :role do |user|
-        user.subscriptions.present? ? 'Subscriber' : 'Member'
+        user.subscriptions.present? ? 'Premium' : 'Free'
       end
       column :account_active
 
