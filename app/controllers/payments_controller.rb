@@ -4,41 +4,14 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    begin
-      customer = Stripe::Customer.create({
-        :email => params[:stripeEmail],
-        :source => params[:stripeToken]
-      })
+    payment_service = PaymentService.new(
+      user: current_user,
+      stripe_email: params[:stripeEmail],
+      stripe_token: params[:stripeToken]
+    )
 
-      charge = Stripe::Charge.create({
-        :customer => customer.id,
-        :amount => 500,
-        :description => 'Description of Membership',
-        :currency => 'usd'
-      })
+    payment_service.process_payment
 
-      Payment.create!(
-        user_email: current_user.email,
-        customer_id: current_user.id,
-        amount: charge.amount/100,
-        description: charge.description,
-        currency: charge.currency
-      )
-
-      Subscription.create(
-        name: 'Subscription',
-        price: charge.amount/100,
-        status: 'Active',
-        description: charge.description,
-        user_id: current_user.id
-      )
-
-      flash[:success] = "Payment was successful!"
-      redirect_to root_path
-
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_payment_path
-    end
+    redirect_to root_path
   end
 end
